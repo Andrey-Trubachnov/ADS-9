@@ -1,5 +1,6 @@
 // Copyright 2022 NNTU-CS
 #include  <iostream>
+#include  <vector>
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
@@ -22,7 +23,7 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
     Node* obj = new Node('\0', nodes); // Создаем корень
 
     root = obj;
-    
+
     for (int i = 0; i < data.size(); ++i) {
       std::vector<char> t = data;
       t.erase(t.begin() + i);
@@ -44,7 +45,10 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   }
 }
 
-void PMTree::perms(Node* node, std::vector<std::vector<char>>& res, std::vector<char>& perm) {
+void PMTree::perms(
+  Node* node, 
+  std::vector<std::vector<char>>& res, 
+  std::vector<char>& perm) {
   if (node->data != '\0') {
     perm.push_back(node->data);
   }
@@ -62,7 +66,7 @@ void PMTree::perms(Node* node, std::vector<std::vector<char>>& res, std::vector<
   if (perm.size()) {
     perm.pop_back();
   }
-  
+
   return;
 }
 
@@ -79,7 +83,7 @@ void PMTree::permNumber(Node* node, std::vector<char>& res, int num) {
   if (fact == 0) {
     return;
   }
-  
+
   int i = num / fact;
   num %= fact;
 
@@ -122,7 +126,7 @@ std::vector<char> getPerm1(PMTree& tree, int num) {
   } else {
     return {};
   }
-
+}
 
 std::vector<char> getPerm2(PMTree& tree, int num) {
   std::vector<char> res;
