@@ -53,6 +53,10 @@ void PMTree::perms(
     perm.push_back(node->data);
   }
 
+  if (!node) {
+    return;
+  }
+    
   for (Node* child : node->nodes) {
       if (child) {
           perms(child, res, perm);
