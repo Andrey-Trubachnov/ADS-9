@@ -91,6 +91,18 @@ void PMTree::permNumber(Node* node, std::vector<char>& res, int num) {
   permNumber(node->nodes[i], res, num);
 }
 
+void PMTree::deleteTree(Node* node) {
+  if (node == nullptr) {
+    return;
+  }
+
+  for (int i = 0; i < node->nodes.size(); ++i) {
+    deleteTree(node->nodes[i]);
+  }
+
+  delete node;
+}
+
 void PMTree::create(std::vector<char>& data) {
   create_tree(nullptr, data);
 }
@@ -111,6 +123,10 @@ void PMTree::getPermNumber(std::vector<char>& res, int num) {
   }
 
   permNumber(root, res, num-1);
+}
+
+PMTree::~PMTree() {
+  deleteTree(root);
 }
 
 std::vector<std::vector<char>> getAllPerms(PMTree& tree) {
