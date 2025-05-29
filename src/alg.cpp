@@ -49,12 +49,12 @@ void PMTree::perms(
   Node* node,
   std::vector<std::vector<char>>& res,
   std::vector<char>& perm) {
-  if (node->data != '\0') {
-    perm.push_back(node->data);
-  }
-
   if (!node) {
     return;
+  }
+  
+  if (node->data != '\0') {
+    perm.push_back(node->data);
   }
     
   for (Node* child : node->nodes) {
