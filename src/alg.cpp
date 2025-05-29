@@ -15,7 +15,7 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   if (root == nullptr) {
     std::vector<Node*> nodes; // Создаем связи от корня
     for (int i = 0; i < data.size(); ++i) {
-      std::vector<Node*> leaf_nodes(data.size() - 1); // Создаем связи от листа
+      std::vector<Node*> leaf_nodes; // Создаем связи от листа
       Node* n = new Node(data[i], leaf_nodes); // Создаем лист
       nodes.push_back(n);
     }
@@ -35,7 +35,7 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
 
   node->nodes.resize(data.size());
   for (int i = 0; i < data.size(); ++i) {
-    std::vector<Node*> leaf_nodes(data.size() - 1); // Создаем связи от листа
+    std::vector<Node*> leaf_nodes; // Создаем связи от листа
     Node* n = new Node(data[i], leaf_nodes); // Создаем лист
     node->nodes[i] = n;
 
@@ -46,8 +46,8 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
 }
 
 void PMTree::perms(
-  Node* node, 
-  std::vector<std::vector<char>>& res, 
+  Node* node,
+  std::vector<std::vector<char>>& res,
   std::vector<char>& perm) {
   if (node->data != '\0') {
     perm.push_back(node->data);
