@@ -32,6 +32,7 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
     return;
   }
 
+  node->nodes.resize(data.size());
   for (int i = 0; i < data.size(); ++i) {
     std::vector<Node*> leaf_nodes(data.size() - 1); // Создаем связи от листа
     Node* n = new Node(data[i], leaf_nodes); // Создаем лист
@@ -48,8 +49,10 @@ void PMTree::perms(Node* node, std::vector<std::vector<char>>& res, std::vector<
     perm.push_back(node->data);
   }
 
-  for (int i = 0; i < node->nodes.size(); ++i) {    
-    perms(node->nodes[i], res, perm);
+  for (Node* child : node->nodes) {
+      if (child) {
+          perms(child, res, perm);
+      }
   }
 
   if (!node->nodes.size()) {
@@ -73,6 +76,10 @@ void PMTree::permNumber(Node* node, std::vector<char>& res, int num) {
     fact *= n;
   }
 
+  if (fact == 0) {
+    return;
+  }
+  
   int i = num / fact;
   num %= fact;
 
@@ -110,8 +117,12 @@ std::vector<std::vector<char>> getAllPerms(PMTree& tree) {
 
 std::vector<char> getPerm1(PMTree& tree, int num) {
   std::vector<std::vector<char>> perms = getAllPerms(tree);
-  return perms[num - 1];
-}
+  if (num - 1 < perms.size()) {
+    return perms[num - 1];
+  } else {
+    return {};
+  }
+
 
 std::vector<char> getPerm2(PMTree& tree, int num) {
   std::vector<char> res;
