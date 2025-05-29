@@ -1,5 +1,5 @@
-#pragma once
 // Copyright 2022 NNTU-CS
+#pragma once
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 #include <iostream>
@@ -17,8 +17,8 @@ class PMTree {
   void create_tree(Node*, const std::vector<char>&);
   void perms(Node*, std::vector<std::vector<char>>&, std::vector<char>&);
   void permNumber(Node*, std::vector<char>&, int);
-public:
-  PMTree(const std::vector<char>& data) {
+ public:
+  explicit PMTree(const std::vector<char>& data) {
     create_tree(root, data);
   }
 
