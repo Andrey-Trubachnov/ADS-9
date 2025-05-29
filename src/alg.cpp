@@ -6,7 +6,7 @@
 #include  "tree.h"
 
 
-void PMTree::create_tree(Node* node, std::vector<char>& data) {
+void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   if (data.empty()) {
     return;
   }
