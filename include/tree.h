@@ -14,11 +14,11 @@ class PMTree {
 
   Node* root;
 
-  void create_tree(Node*, std::vector<char>&);
+  void create_tree(Node*, const std::vector<char>&);
   void perms(Node*, std::vector<std::vector<char>>&, std::vector<char>&);
   void permNumber(Node*, std::vector<char>&, int);
 public:
-  PMTree(std::vector<char>& data) {
+  PMTree(const std::vector<char>& data) {
     create_tree(root, data);
   }
 
