@@ -18,6 +18,7 @@ class PMTree {
   void perms(Node*, std::vector<std::vector<char>>&, std::vector<char>&);
   void permNumber(Node*, std::vector<char>&, int);
   void deleteTree(Node*);
+
  public:
   explicit PMTree(const std::vector<char>& data) : root(nullptr) {
     create_tree(root, data);
