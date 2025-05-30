@@ -19,7 +19,7 @@ class PMTree {
   void permNumber(Node*, std::vector<char>&, int);
   void deleteTree(Node*);
  public:
-  explicit PMTree(const std::vector<char>& data) {
+  explicit PMTree(const std::vector<char>& data) : root(nullptr) {
     create_tree(root, data);
   }
 
