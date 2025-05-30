@@ -37,6 +37,9 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   for (int i = 0; i < data.size(); ++i) {
     std::vector<Node*> leaf_nodes; // Создаем связи от листа
     Node* n = new Node(data[i], leaf_nodes); // Создаем лист
+    if (i < node->nodes.size() && node->nodes[i]) {
+      delete node->nodes[i];
+    }
     node->nodes[i] = n;
 
     std::vector<char> t = data;
