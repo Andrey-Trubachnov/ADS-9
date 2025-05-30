@@ -12,6 +12,10 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
     return;
   }
 
+  if (root) {
+    deleteTree(root);
+  }
+
   if (root == nullptr) {
     std::vector<Node*> nodes; // Создаем связи от корня
     for (int i = 0; i < data.size(); ++i) {
