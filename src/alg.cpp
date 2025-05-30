@@ -100,7 +100,7 @@ void PMTree::permNumber(Node* node, std::vector<char>& res, int num) {
   if (i >= node->nodes.size()) {
     return;
   }
-  
+
   num %= fact;
 
   res.push_back(node->nodes[i]->data);
