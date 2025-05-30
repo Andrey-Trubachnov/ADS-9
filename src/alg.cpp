@@ -14,6 +14,7 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
 
   if (root && node == nullptr) {
     deleteTree(root);
+    root = nullptr;
   }
 
   if (root == nullptr) {
@@ -40,6 +41,11 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   for (int i = 0; i < data.size(); ++i) {
     std::vector<Node*> leaf_nodes; // Создаем связи от листа
     Node* n = new Node(data[i], leaf_nodes); // Создаем лист
+    
+    if (node->nodes.size() <= i) {
+      node->nodes.resize(i + 1, nullptr);
+    }
+    
     if (i < node->nodes.size() && node->nodes[i]) {
       delete node->nodes[i];
     }
@@ -90,11 +96,11 @@ void PMTree::permNumber(Node* node, std::vector<char>& res, int num) {
     fact *= n;
   }
 
-  if (fact == 0) {
+  int i = num / fact;
+  if (i >= node->nodes.size()) {
     return;
   }
-
-  int i = num / fact;
+  
   num %= fact;
 
   res.push_back(node->nodes[i]->data);
