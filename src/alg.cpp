@@ -41,11 +41,11 @@ void PMTree::create_tree(Node* node, const std::vector<char>& data) {
   for (int i = 0; i < data.size(); ++i) {
     std::vector<Node*> leaf_nodes; // Создаем связи от листа
     Node* n = new Node(data[i], leaf_nodes); // Создаем лист
-    
+
     if (node->nodes.size() <= i) {
       node->nodes.resize(i + 1, nullptr);
     }
-    
+
     if (i < node->nodes.size() && node->nodes[i]) {
       delete node->nodes[i];
     }
@@ -64,11 +64,11 @@ void PMTree::perms(
   if (!node) {
     return;
   }
-  
+
   if (node->data != '\0') {
     perm.push_back(node->data);
   }
-    
+
   for (Node* child : node->nodes) {
       if (child) {
           perms(child, res, perm);
